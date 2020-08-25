@@ -1,6 +1,0 @@
-wheel
-Django
-django-cleanup
-django-debug-toolbar
-Pillow
-stripe

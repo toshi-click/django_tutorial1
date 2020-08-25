@@ -1,4 +1,0 @@
--r base.txt
-django-environ
-gunicorn
-mysqlclient
