@@ -11,7 +11,7 @@ x-logging:
 services:
   postgres_django:
     build:
-      context: ./
+      context: .
       dockerfile: postgresql/Dockerfile
       args:
         - DB_LANG=ja_JP
@@ -20,7 +20,7 @@ services:
     volumes:
       - django_postgres_data:/var/lib/postgresql/data
       # down -vなどでボリュームがない時などを含めた初回起動時に実行されるファイルを指定
-      - ./containers/postgres/sql:/docker-entrypoint-initdb.d
+      - ./postgresql/sql:/docker-entrypoint-initdb.d
     ports:
       - "5432"
     logging: *default-logging
