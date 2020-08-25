@@ -10,35 +10,37 @@ x-logging:
 
 services:
   postgres_django:
-    restart: always
-    build: containers/postgresql
+    build:
+      context: ./
+      dockerfile: postgresql/Dockerfile
+      args:
+        - DB_LANG=ja_JP
     container_name: postgres_django
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
+    env_file: ./postgresql/.env_db
     volumes:
       - django_postgres_data:/var/lib/postgresql/data
-    #      - ./docker/postgresql/postgresql.conf:/etc/postgresql.conf
-    #      - ./docker/01_create_db.sql:/docker-entrypoint-initdb.d/01_create_db.sql
-    #      - ./docker/02_django_db.sql:/docker-entrypoint-initdb.d/02_django_db.sql
+      # down -vなどでボリュームがない時などを含めた初回起動時に実行されるファイルを指定
+      - ./containers/postgres/sql:/docker-entrypoint-initdb.d
     ports:
       - "5432"
     logging: *default-logging
 
   web_django:
-    restart: always
-    build: containers/django
+    build: django
     container_name: web_django
-    environment:
+#    environment:
     # --max-requests 1は開発中にファイルを変更しても反映されないのでさせるために付与。
     # 付けない場合はファイル更新を通知するために下記をする必要がある
     # docker exec -it django_web pgrep gunicorn
     # docker exec -it django_web kill -HUP [↑で確認した番号]
-    command: bash -c "sleep 5; gunicorn config.wsgi --workers 2 --bind 0.0.0.0:8000 --max-requests 1"
+    command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./app:/usr/src/app
+      - ./django:/usr/src/app/
     ports:
-      - "80"
+      - "8000:8000"
+    env_file:
+      # 環境変数に設定するファイル
+      - ./django/.env
     logging: *default-logging
 
 #  django_redis:
