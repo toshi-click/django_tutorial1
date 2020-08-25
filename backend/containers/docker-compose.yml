@@ -41,6 +41,8 @@ services:
     env_file:
       # 環境変数に設定するファイル
       - ./django/.env
+    depends_on:
+      - "postgres_django"
     logging: *default-logging
 
 #  django_redis:

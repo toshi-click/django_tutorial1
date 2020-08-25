@@ -1,1 +1,1 @@
-create database django_db;
+-- create database django_db;
