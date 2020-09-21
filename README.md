@@ -1,4 +1,5 @@
 # django_tutorial
+[このチュートリアル](https://tutorial.djangogirls.org/ja/)の実践内容
 
 ## djangoの生成
 ```bash
