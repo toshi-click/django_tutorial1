@@ -32,3 +32,8 @@ docker exec -it web_django python3 manage.py createsuperuser
 ```
 docker exec -it web_django python3 manage.py shell
 ```
+
+### サーバー上の静的ファイルの更新
+```
+docker exec -it web_django python3 manage.py collectstatic
+```
