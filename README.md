@@ -26,3 +26,8 @@ docker exec -it web_django python3 manage.py migrate blog
 ```
 docker exec -it web_django python3 manage.py createsuperuser
 ```
+
+### Django Shell
+```
+docker exec -it web_django python3 manage.py shell
+```
