@@ -1,5 +1,6 @@
 # django_tutorial
-[このチュートリアル](https://tutorial.djangogirls.org/ja/)の実践内容
+[このチュートリアル](https://tutorial.djangogirls.org/ja/) の実践内容<br>
+[↑のExtensions](https://tutorial-extensions.djangogirls.org/)
 
 ## djangoの生成
 ```bash
