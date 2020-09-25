@@ -38,3 +38,9 @@ docker exec -it web_django python3 manage.py shell
 ```
 docker exec -it web_django python3 manage.py collectstatic
 ```
+
+### モデル追加後にテーブル作成
+```bash
+docker exec -it web_django python3 manage.py makemigrations blog
+docker exec -it web_django python3 manage.py migrate blog
+```
